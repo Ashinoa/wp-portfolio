@@ -22,6 +22,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.alice-regular {
+  font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .popup {
   position: fixed;
   inset: 0;

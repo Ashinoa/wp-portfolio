@@ -23,6 +23,13 @@
     background-size: cover;
 }
 
+.alice-regular {
+  font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 .elementor-section.elementor-section-boxed>.elementor-container {
     max-width: 1140px;
 }
