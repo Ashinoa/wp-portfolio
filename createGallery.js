@@ -1,78 +1,60 @@
+function createImageElement(imgData, isFirstImage = false) {
+    const img = document.createElement("img");
 
-fetch('./imagesCol1.json')
-    .then(res => res.json())
-    .then(images => {
-        const col1 = document.getElementById('col-1');
+    img.className = "popup-image";
+    img.src = imgData.src;
+    img.alt = imgData.alt;
 
-        images.forEach(imgData => {
-            const container = document.createElement('div');
-            container.className =
-                'elementor-element elementor-element-4934eb4 e-con-full e-flex e-con e-child';
+    // Dimensiones reales sin px
+    img.width = 560;
+    img.height = 875;
 
-            container.innerHTML = `
-        <div class="elementor-widget elementor-widget-spacer">
-          <div class="elementor-widget-container">
-            <div class="elementor-spacer">
-              <div class="elementor-spacer-inner"></div>
-            </div>
-          </div>
-        </div>
+    // Reservar espacio correctamente
+    img.style.aspectRatio = "560 / 875";
+    img.style.width = "100%";
+    img.style.height = "auto";
 
-        <div class="elementor-element elementor-widget elementor-widget-image">
-          <div class="elementor-widget-container">
-            <img
-              class="popup-image"
-              src="${imgData.src}"
-              alt="${imgData.alt}"
-              loading="lazy"
-            >
-          </div>
-        </div>
+    if (isFirstImage) {
+        img.fetchPriority = "high";
+    } else {
+        img.loading = "lazy";
+    }
 
-        <div class="elementor-widget elementor-widget-spacer">
-          <div class="elementor-widget-container">
-            <div class="elementor-spacer">
-              <div class="elementor-spacer-inner"></div>
-            </div>
-          </div>
-        </div>
-      `;
+    return img;
+}
 
-            col1.appendChild(container);
+function loadColumn(jsonPath, columnId, isFirstColumn = false) {
+    fetch(jsonPath)
+        .then(res => res.json())
+        .then(images => {
+            const column = document.getElementById(columnId);
+
+            images.forEach((imgData, index) => {
+                const container = document.createElement("div");
+                container.className =
+                    "elementor-element e-con-full e-flex e-con e-child";
+
+                const widgetContainer = document.createElement("div");
+                widgetContainer.className =
+                    "elementor-widget elementor-widget-image";
+
+                const widgetInner = document.createElement("div");
+                widgetInner.className = "elementor-widget-container";
+
+                const img = createImageElement(
+                    imgData,
+                    isFirstColumn && index === 0
+                );
+
+                widgetInner.appendChild(img);
+                widgetContainer.appendChild(widgetInner);
+                container.appendChild(widgetContainer);
+
+                column.appendChild(container);
+            });
         });
-    });
+}
 
-fetch('./imagesCol2.json')
-    .then(res => res.json())
-    .then(images => {
-        const col2 = document.getElementById('col-2');
-
-        images.forEach(imgData => {
-            const container = document.createElement('div');
-            container.className =
-                'elementor-element elementor-element-b92f322 e-con-full e-flex e-con e-child';
-
-            container.innerHTML = `
-        <div class="elementor-element elementor-widget elementor-widget-image">
-          <div class="elementor-widget-container">
-            <img
-              class="popup-image"
-              src="${imgData.src}"
-              alt="${imgData.alt}"
-              loading="lazy"
-            >
-          </div>
-        </div>
-
-        <div class="elementor-widget elementor-widget-spacer">
-          <div class="elementor-widget-container">
-            <div class="elementor-spacer">
-              <div class="elementor-spacer-inner"></div>
-            </div>
-          </div>
-        </div>
-      `;
-
-            col2.appendChild(container);
-        });
-    });
+// Solo la PRIMERA imagen del sitio es prioridad alta
+loadColumn("./imagesCol1.json", "col-1", true);
+loadColumn("./imagesCol2.json", "col-2");

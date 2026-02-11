@@ -1,8 +1,5 @@
 .elementor-kit-68 {
-    --e-global-color-primary: #6EC1E4;
-    --e-global-color-secondary: #54595F;
-    --e-global-color-text: #7A7A7A;
-    --e-global-color-accent: #61CE70;
+    --text-color: #6b636c;
     --e-global-typography-primary-font-family: "Alice";
     --e-global-typography-primary-font-size: 1.5vw;
     --e-global-typography-primary-font-weight: 400;
@@ -18,17 +15,97 @@
     --e-global-typography-accent-font-size: 1.5vw;
     --e-global-typography-accent-font-weight: 400;
     background-image: url("../index_files/Nevra-Guada-scaled-riwt40xg2qjkqx6kxxyj4g815oia0mdgv8wx5hhpeg.webp");
-    background-position: center center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+}
+/*------------------------------------Formas de nube----------------------------------------*/
+
+.elementor-shape {
+    direction: ltr;
+    left: 0;
+    line-height: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 100%
 }
 
-.alice-regular {
-  font-family: "Alice", serif;
-  font-weight: 400;
-  font-style: normal;
+.elementor-shape-top {
+    top: -1px
 }
 
+.elementor-shape svg {
+    display: block;
+    left: 50%;
+    position: relative;
+    transform: translateX(-50%);
+    width: calc(100% + 1.3px)
+}
+
+.elementor-shape .elementor-shape-fill {
+    fill: #fff;
+    transform: rotateY(0deg);
+    transform-origin: center
+}
+/*---------------------------------Divisor del header lateral------------------------------------------------*/
+
+.elementor-widget-divider {
+    --divider-border-style: none;
+    --divider-border-width: 1px;
+    --divider-color: #0c0d0e;
+    --divider-icon-size: 20px;
+    --divider-element-spacing: 10px;
+    --divider-pattern-height: 24px;
+    --divider-pattern-size: 20px;
+    --divider-pattern-url: none;
+    --divider-pattern-repeat: repeat-x
+}
+
+.elementor-widget-divider .elementor-divider {
+    display: flex
+}
+
+
+.elementor-widget-divider .elementor-divider-separator {
+    direction: ltr;
+    display: flex;
+    margin: 0
+}
+
+.elementor-widget-divider--separator-type-pattern {
+    --divider-border-style: none
+}
+
+.elementor-widget-divider--separator-type-pattern.elementor-widget-divider--view-line .elementor-divider-separator,
+.elementor-widget-divider--separator-type-pattern:not(.elementor-widget-divider--view-line) .elementor-divider-separator:after,
+.elementor-widget-divider--separator-type-pattern:not(.elementor-widget-divider--view-line) .elementor-divider-separator:before,
+.elementor-widget-divider--separator-type-pattern:not([class*=elementor-widget-divider--view]) .elementor-divider-separator {
+    background-color: var(--divider-color);
+    -webkit-mask-image: var(--divider-pattern-url);
+    mask-image: var(--divider-pattern-url);
+    -webkit-mask-repeat: var(--divider-pattern-repeat);
+    mask-repeat: var(--divider-pattern-repeat);
+    -webkit-mask-size: var(--divider-pattern-size) 100%;
+    mask-size: var(--divider-pattern-size) 100%;
+    min-height: var(--divider-pattern-height);
+    width: 100%
+}
+
+.e-con-inner>.elementor-widget-divider,
+.e-con>.elementor-widget-divider {
+    width: var(--container-widget-width, 100%);
+    --flex-grow: var(--container-widget-flex-grow)
+}
+.elementor-widget-image {
+    text-align: center
+}
+
+.elementor-widget-image img {
+    display: inline-block;
+    vertical-align: middle
+}
+/*-------------------------------------------------------------------------------------------*/
 
 .elementor-section.elementor-section-boxed>.elementor-container {
     max-width: 1140px;
@@ -64,18 +141,12 @@ h1.entry-title {
 }
 
 footer .footer-inner .site-navigation a {
-    color: #F1EAFF;
+    color: #706f73;
     font-family: "Arial", Sans-serif;
     font-weight: 400;
     text-transform: none;
     font-style: normal;
     text-decoration: none;
-}
-
-@media(min-width:1025px) {
-    .elementor-kit-68 {
-        background-attachment: scroll;
-    }
 }
 
 @media(max-width:1024px) {
@@ -435,6 +506,7 @@ body.rtl .elementor-191 .elementor-element.elementor-element-32d4347 {
     font-family: "Alice", Sans-serif;
     font-size: 1.5vw;
     font-weight: 400;
+    color: var(--text-color);
 }
 
 .elementor-191 .elementor-element.elementor-element-a3764b8>.elementor-widget-container {
@@ -666,5 +738,8 @@ body.rtl .elementor-191 .elementor-element.elementor-element-32d4347 {
     .elementor-191 .elementor-element.elementor-element-a3764b8 {
         font-size: 3.5vw;
         word-spacing: 0.2rem;
+    }
+    .elementor-191 .elementor-element.elementor-element-0680ed2.elementor-element{
+     display: none;
     }
 }
